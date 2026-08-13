@@ -44,7 +44,7 @@ export default function Home() {
           <HeroVideoScroll
             videoFramePath="/videos/video_2_frames"
             totalFrames={20}
-            overlayTitle="Your Smile. Your Confidence. Your Best Self."
+            overlayTitle="Confidence Starts With Your Smile"
             overlayDescription="Your journey to perfect smiles starts here."
           />
         </div>
@@ -53,7 +53,7 @@ export default function Home() {
           <ResultsGalleryVideoScroll
             videoFramePath="/videos/video_1_frames"
             totalFrames={20}
-            overlayTitle="Real Smiles. Real Transformations."
+            overlayTitle="Smiles Transformed Confidence Restored"
             overlayDescription="Join hundreds of satisfied patients who achieved their dream smiles."
           />
         </div>

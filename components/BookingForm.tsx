@@ -89,7 +89,7 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
             Book an Appointment
           </p>
           <RevealText
-            text="Ready to love your smile?"
+            text="Your New Smile Awaits"
             wordReveal
             className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl"
           />

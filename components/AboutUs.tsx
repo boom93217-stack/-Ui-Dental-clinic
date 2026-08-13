@@ -55,7 +55,7 @@ export default function AboutUs() {
             About Us
           </p>
           <RevealText
-            text="Precision. Care. Confidence."
+            text="Expert Care Genuine Warmth"
             wordReveal
             className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl"
           />
