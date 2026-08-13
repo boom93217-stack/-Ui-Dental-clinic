@@ -17,7 +17,7 @@ interface HeroVideoScrollProps {
 export default function HeroVideoScroll({
   videoFramePath,
   totalFrames,
-  overlayTitle = "We Design Smiles - Professional Dental Care",
+  overlayTitle = "UI Dentist - Professional Dental Care",
   overlayDescription = "Your journey to perfect smiles starts here.",
   scrollHeightMultiplier = 3,
 }: HeroVideoScrollProps) {

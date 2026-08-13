@@ -42,7 +42,7 @@ export default function LocationMap({
         <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm lg:col-span-3">
           <div className="aspect-video w-full">
             <iframe
-              title="WE DESIGN SMILES clinic location"
+              title="UI Dentist clinic location"
               src={`https://maps.google.com/maps?q=${mapQuery}&output=embed`}
               className="h-full w-full border-0"
               loading="lazy"

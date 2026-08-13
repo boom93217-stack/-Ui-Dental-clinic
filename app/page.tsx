@@ -42,16 +42,16 @@ export default function Home() {
       <main>
         <div id="hero" className="relative scroll-mt-20">
           <HeroVideoScroll
-            videoFramePath="/videos/video_1_frames"
+            videoFramePath="/videos/video_2_frames"
             totalFrames={20}
-            overlayTitle="We Design Smiles - Professional Dental Care"
+            overlayTitle="UI Dentist - Professional Dental Care"
             overlayDescription="Your journey to perfect smiles starts here."
           />
         </div>
 
         <div id="results" className="relative scroll-mt-20">
           <ResultsGalleryVideoScroll
-            videoFramePath="/videos/video_2_frames"
+            videoFramePath="/videos/video_1_frames"
             totalFrames={20}
             overlayTitle="See Our Smile Transformations - Before & After Results"
             overlayDescription="Join hundreds of satisfied patients who achieved their dream smiles."

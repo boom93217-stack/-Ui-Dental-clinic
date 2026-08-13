@@ -8,7 +8,7 @@ interface TeamMember {
   image: string;
 }
 
-const TEAM: TeamMember[] = [
+const  TEAM: TeamMember[] = [
   {
     name: "Dr. Elena Marsh",
     role: "Lead Dentist & Founder",
@@ -52,7 +52,7 @@ export default function AboutUs() {
             Dentistry Built Around You
           </h2>
           <p className="mt-4 text-slate-600">
-            WE DESIGN SMILES started with a simple idea: a dental visit should feel
+            UI Dentist started with a simple idea: a dental visit should feel
             calm, unhurried, and genuinely cared for. What began as a single treatment
             room has grown into a full studio-style clinic, but the philosophy hasn&apos;t
             changed — every space, every appointment, and every material choice is
