@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import RevealText from "@/components/RevealText";
+
 export interface BookingFormValues {
   name: string;
   email: string;
@@ -86,9 +88,11 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
           <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
             Book an Appointment
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl">
-            Start Your Smile Journey
-          </h2>
+          <RevealText
+            text="Ready to love your smile?"
+            wordReveal
+            className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl"
+          />
           <p className="mt-3 text-slate-600">
             Tell us a little about yourself and pick a time that works for you.
           </p>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useRevealOnce } from "@/hooks/useRevealOnce";
+import RevealText from "@/components/RevealText";
 
 interface TeamMember {
   name: string;
@@ -54,9 +54,11 @@ export default function AboutUs() {
           <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
             About Us
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl">
-            Dentistry Built Around You
-          </h2>
+          <RevealText
+            text="Precision. Care. Confidence."
+            wordReveal
+            className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl"
+          />
           <p className="mt-4 text-slate-600">
             UI Dentist started with a simple idea: a dental visit should feel
             calm, unhurried, and genuinely cared for. What began as a single treatment
