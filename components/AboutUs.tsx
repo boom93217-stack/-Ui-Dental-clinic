@@ -8,7 +8,9 @@ interface TeamMember {
   image: string;
 }
 
-const  TEAM: TeamMember[] = [
+const 
+
+TEAM: TeamMember[] = [
   {
     name: "Dr. Elena Marsh",
     role: "Lead Dentist & Founder",

@@ -19,7 +19,7 @@ export default function HeroVideoScroll({
   totalFrames,
   overlayTitle = "UI Dentist - Professional Dental Care",
   overlayDescription = "Your journey to perfect smiles starts here.",
-  scrollHeightMultiplier = 3,
+  scrollHeightMultiplier = 2,
 }: HeroVideoScrollProps) {
   const { wrapperRef, currentFrame, isInView, firstFrameLoaded } =
     useFrameScrub({ videoFramePath, totalFrames, scrollHeightMultiplier });
@@ -30,7 +30,9 @@ export default function HeroVideoScroll({
       style={{ height: `${scrollHeightMultiplier * 100}vh` }}
       className="relative w-full"
     >
-      <div className="sticky top-0 aspect-video w-full overflow-hidden bg-clinic-ink">
+      {/* Full-screen on mobile so text/video are always in view together; a fixed
+          16:9 banner only once there's enough width to spare (md+). */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-clinic-ink md:aspect-video md:h-auto">
         {isInView && firstFrameLoaded ? (
           <img
             src={frameSrc(videoFramePath, currentFrame)}

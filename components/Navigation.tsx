@@ -73,9 +73,20 @@ export default function Navigation({ sections = DEFAULT_SECTIONS }: NavigationPr
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href={`#${sections[0]}`}
-          className="text-base font-semibold tracking-tight text-clinic-ink sm:text-lg"
+          className="flex items-center gap-2.5 text-base font-semibold tracking-tight text-clinic-ink sm:text-lg"
         >
-          WE DESIGN <span className="text-cyan-500">SMILES</span>
+          <svg
+            viewBox="0 0 32 32"
+            className="h-9 w-9 shrink-0"
+            aria-hidden="true"
+          >
+            <rect width="32" height="32" rx="9" fill="#06b6d4" />
+            <path
+              fill="#ffffff"
+              d="M16 6c-4.4 0-7.2 2.6-7.2 6.3 0 2 .6 3.3 1.2 4.7.5 1.1.9 2.2 1.1 3.8.2 1.8.5 4 1.7 5.3.6.6 1.3.5 1.6-.5.4-1.5.9-3.4 1.6-3.4s1.2 1.9 1.6 3.4c.3 1 1 1.1 1.6.5 1.2-1.3 1.5-3.5 1.7-5.3.2-1.6.6-2.7 1.1-3.8.6-1.4 1.2-2.7 1.2-4.7C23.2 8.6 20.4 6 16 6z"
+            />
+          </svg>
+          UI <span className="text-cyan-500">Dentist</span>
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
