@@ -44,7 +44,7 @@ export default function Home() {
           <HeroVideoScroll
             videoFramePath="/videos/video_2_frames"
             totalFrames={20}
-            overlayTitle="UI Dentist - Professional Dental Care"
+            overlayTitle="Your Smile. Your Confidence. Your Best Self."
             overlayDescription="Your journey to perfect smiles starts here."
           />
         </div>
@@ -53,7 +53,7 @@ export default function Home() {
           <ResultsGalleryVideoScroll
             videoFramePath="/videos/video_1_frames"
             totalFrames={20}
-            overlayTitle="See Our Smile Transformations - Before & After Results"
+            overlayTitle="Real Smiles. Real Transformations."
             overlayDescription="Join hundreds of satisfied patients who achieved their dream smiles."
           />
         </div>

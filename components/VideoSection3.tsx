@@ -21,7 +21,7 @@ export default function VideoSection3({
   totalFrames,
   overlayTitle = "Professional Clinic Design - Built for Your Comfort",
   overlayDescription = "Every space designed for your peace of mind.",
-  scrollHeightMultiplier = 3,
+  scrollHeightMultiplier = 2,
 }: VideoSection3Props) {
   const { wrapperRef, currentFrame, isInView, firstFrameLoaded } =
     useFrameScrub({ videoFramePath, totalFrames, scrollHeightMultiplier });
@@ -39,7 +39,9 @@ export default function VideoSection3({
         style={{ height: `${scrollHeightMultiplier * 100}vh` }}
         className="relative w-full"
       >
-        <div className="sticky top-0 aspect-video w-full overflow-hidden bg-clinic-ink">
+        {/* Full-screen on mobile so text/video are always in view together; a fixed
+            16:9 banner only once there's enough width to spare (md+). */}
+        <div className="sticky top-0 h-screen w-full overflow-hidden bg-clinic-ink md:aspect-video md:h-auto">
           {isInView && firstFrameLoaded ? (
             <img
               src={frameSrc(videoFramePath, currentFrame)}

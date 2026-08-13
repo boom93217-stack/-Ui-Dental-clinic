@@ -41,7 +41,24 @@ export default function Navigation({ sections = DEFAULT_SECTIONS }: NavigationPr
   const [activeSection, setActiveSection] = useState(sections[0]);
 
   useEffect(() => {
-    const handleScroll = () => {
+    // Cache each section's offsetTop instead of reading it on every scroll
+    // tick — offsetTop reads force a synchronous layout, and doing that on
+    // every scroll event is what caused scroll jank. Re-measure only on
+    // resize/load, when positions can actually change.
+    let sectionOffsets: { id: string; offsetTop: number }[] = [];
+    let rafId: number | null = null;
+
+    const measure = () => {
+      sectionOffsets = sections
+        .map((id) => {
+          const el = document.getElementById(id);
+          return el ? { id, offsetTop: el.offsetTop } : null;
+        })
+        .filter((s): s is { id: string; offsetTop: number } => s !== null);
+    };
+
+    const updateActive = () => {
+      rafId = null;
       const scrollPosition = window.scrollY + NAV_HEIGHT_OFFSET;
 
       // Pick the section with the greatest offsetTop that's still above the
@@ -49,20 +66,33 @@ export default function Navigation({ sections = DEFAULT_SECTIONS }: NavigationPr
       // order, so this stays correct regardless of the order `sections` is passed in.
       let current = sections[0];
       let bestOffsetTop = -Infinity;
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollPosition && el.offsetTop > bestOffsetTop) {
+      for (const { id, offsetTop } of sectionOffsets) {
+        if (offsetTop <= scrollPosition && offsetTop > bestOffsetTop) {
           current = id;
-          bestOffsetTop = el.offsetTop;
+          bestOffsetTop = offsetTop;
         }
       }
       setActiveSection(current);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    const handleScroll = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(updateActive);
+    };
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    measure();
+    updateActive();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", measure, { passive: true });
+    window.addEventListener("load", measure);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("load", measure);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, [sections]);
 
   const ctaId = sections.includes("booking") ? "booking" : sections[sections.length - 1];

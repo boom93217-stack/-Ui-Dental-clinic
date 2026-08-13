@@ -49,6 +49,7 @@ export default function HeroVideoScroll({
           description={overlayDescription}
           headingLevel="h1"
           showScrollIndicator={currentFrame < 2}
+          wordReveal
         />
       </div>
     </div>

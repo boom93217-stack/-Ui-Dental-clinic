@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+
+import { useRevealOnce } from "@/hooks/useRevealOnce";
 
 interface TeamMember {
   name: string;
