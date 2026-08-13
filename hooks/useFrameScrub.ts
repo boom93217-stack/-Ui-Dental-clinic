@@ -3,10 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 
 const FRAME_PAD = 4;
+/** Below this viewport width, serve the downscaled -mobile frame set instead of the 1920px desktop one. */
+const MOBILE_BREAKPOINT = 768;
+
+function resolveBasePath(basePath: string) {
+  if (typeof window === "undefined") return basePath;
+  return window.innerWidth < MOBILE_BREAKPOINT ? `${basePath}-mobile` : basePath;
+}
 
 export function frameSrc(basePath: string, frameIndex: number) {
   const n = String(frameIndex + 1).padStart(FRAME_PAD, "0");
-  return `${basePath}/frame_${n}.webp`;
+  return `${resolveBasePath(basePath)}/frame_${n}.webp`;
 }
 
 interface UseFrameScrubOptions {

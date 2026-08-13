@@ -53,8 +53,8 @@ export default function Home() {
           <ResultsGalleryVideoScroll
             videoFramePath="/videos/video_1_frames"
             totalFrames={20}
-            overlayTitle="Smiles Transformed Confidence Restored"
-            overlayDescription="Join hundreds of satisfied patients who achieved their dream smiles."
+            overlayTitle="Real Patients, Real Transformations"
+            overlayDescription="Explore before-and-after results from patients who trusted us with their smiles."
           />
         </div>
 
@@ -62,7 +62,7 @@ export default function Home() {
           <VideoSection3
             videoFramePath="/videos/video_3_frames"
             totalFrames={20}
-            overlayTitle="Professional Clinic Design - Built for Your Comfort"
+            overlayTitle="A Clinic Designed Around Your Comfort"
             overlayDescription="Every space designed for your peace of mind."
           />
         </div>

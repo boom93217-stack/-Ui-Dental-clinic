@@ -17,8 +17,8 @@ interface ResultsGalleryVideoScrollProps {
 export default function ResultsGalleryVideoScroll({
   videoFramePath,
   totalFrames,
-  overlayTitle = "See Our Smile Transformations - Before & After Results",
-  overlayDescription = "Join hundreds of satisfied patients who achieved their dream smiles.",
+  overlayTitle = "Real Patients, Real Transformations",
+  overlayDescription = "Explore before-and-after results from patients who trusted us with their smiles.",
   scrollHeightMultiplier = 2,
 }: ResultsGalleryVideoScrollProps) {
   const { wrapperRef, currentFrame, isInView, firstFrameLoaded } =
@@ -26,12 +26,6 @@ export default function ResultsGalleryVideoScroll({
 
   return (
     <>
-      {/* Subtle visual separation from the preceding section */}
-      <div
-        className="mx-auto my-10 h-px w-24 bg-slate-200 sm:my-14 md:my-16"
-        aria-hidden="true"
-      />
-
       <div
         ref={wrapperRef}
         style={{ height: `${scrollHeightMultiplier * 100}vh` }}

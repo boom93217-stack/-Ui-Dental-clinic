@@ -19,7 +19,7 @@ interface VideoSection3Props {
 export default function VideoSection3({
   videoFramePath,
   totalFrames,
-  overlayTitle = "Professional Clinic Design - Built for Your Comfort",
+  overlayTitle = "A Clinic Designed Around Your Comfort",
   overlayDescription = "Every space designed for your peace of mind.",
   scrollHeightMultiplier = 2,
 }: VideoSection3Props) {
@@ -28,12 +28,6 @@ export default function VideoSection3({
 
   return (
     <>
-      {/* Subtle visual separation from the preceding section */}
-      <div
-        className="mx-auto my-10 h-px w-24 bg-slate-200 sm:my-14 md:my-16"
-        aria-hidden="true"
-      />
-
       <div
         ref={wrapperRef}
         style={{ height: `${scrollHeightMultiplier * 100}vh` }}
