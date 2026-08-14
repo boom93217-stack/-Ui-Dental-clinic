@@ -13,6 +13,15 @@ const config: Config = {
           accent: "#2dd4bf",
         },
       },
+      keyframes: {
+        "hero-zoom": {
+          from: { transform: "scale(1)" },
+          to: { transform: "scale(1.08)" },
+        },
+      },
+      animation: {
+        "hero-zoom": "hero-zoom 18s ease-out infinite alternate",
+      },
     },
   },
   plugins: [],
