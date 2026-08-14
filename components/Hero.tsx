@@ -15,7 +15,7 @@ export default function Hero({
   overlayDescription = "Your journey to perfect smiles starts here.",
 }: HeroProps) {
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-clinic-ink md:aspect-video md:h-auto">
+    <div className="relative h-[calc(100vh-4rem)] w-full overflow-hidden bg-clinic-ink md:aspect-video md:h-auto">
       <Image
         src={imageSrc}
         alt="Confident, healthy smile at UI Dentist"

@@ -38,13 +38,14 @@ export default function VideoOverlay({
 
   return (
     <>
-      {/* Bottom-to-transparent white gradient overlay */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-white/85 to-transparent" />
+      {/* Bottom-to-transparent white gradient overlay, tall enough to keep the
+          heading legible over busy photo content. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-white/90 via-white/55 to-transparent" />
 
       {/* Text overlay */}
       <div
         ref={ref}
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-1 px-4 pb-10 text-center sm:gap-2 sm:px-6 sm:pb-14 md:pb-16"
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-1 px-4 pb-12 text-center sm:gap-2 sm:px-6 sm:pb-16 md:pb-20"
       >
         <Heading className="text-xl font-semibold leading-tight tracking-tight text-clinic-ink sm:text-2xl md:text-4xl lg:text-5xl">
           {wordReveal ? (
