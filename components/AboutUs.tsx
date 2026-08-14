@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 import RevealText from "@/components/RevealText";
+import { useRevealOnce } from "@/hooks/useRevealOnce";
 
 interface TeamMember {
   name: string;
@@ -46,6 +47,8 @@ TEAM: TeamMember[] = [
 
 export default function AboutUs() {
   const lead = TEAM[0];
+  const { ref: portraitRef, isVisible: portraitVisible } =
+    useRevealOnce<HTMLDivElement>();
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
@@ -74,36 +77,46 @@ export default function AboutUs() {
           </blockquote>
         </div>
 
-        <div className="rounded-2xl bg-slate-50 p-6 sm:p-8">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Lead Clinician
-          </h3>
-          <div className="mt-4 flex items-center gap-4">
+        <div>
+          <div
+            ref={portraitRef}
+            className={`aspect-[3/4] w-full overflow-hidden rounded-2xl motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
+              portraitVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-3"
+            }`}
+          >
             <Image
-              src={lead.image}
-              alt={lead.name}
-              width={80}
-              height={80}
-              className="h-20 w-20 rounded-full object-cover"
+              src="/images/about-meet-dentist.webp"
+              alt={`${lead.name}, ${lead.role}`}
+              width={1200}
+              height={1600}
+              className="h-full w-full object-cover"
             />
-            <div>
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-slate-50 p-6 sm:p-8">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Meet Our Dentist
+            </h3>
+            <div className="mt-4">
               <p className="font-semibold text-clinic-ink">{lead.name}</p>
               <p className="text-sm text-slate-600">{lead.credentials}</p>
             </div>
+            <ul className="mt-6 space-y-2 text-sm text-slate-600">
+              <li className="flex gap-2">
+                <span className="text-sky-600">•</span> American Dental Association,
+                Active Member
+              </li>
+              <li className="flex gap-2">
+                <span className="text-sky-600">•</span> Certified in Advanced Cosmetic
+                Dentistry
+              </li>
+              <li className="flex gap-2">
+                <span className="text-sky-600">•</span> 15+ years of clinical experience
+              </li>
+            </ul>
           </div>
-          <ul className="mt-6 space-y-2 text-sm text-slate-600">
-            <li className="flex gap-2">
-              <span className="text-sky-600">•</span> American Dental Association,
-              Active Member
-            </li>
-            <li className="flex gap-2">
-              <span className="text-sky-600">•</span> Certified in Advanced Cosmetic
-              Dentistry
-            </li>
-            <li className="flex gap-2">
-              <span className="text-sky-600">•</span> 15+ years of clinical experience
-            </li>
-          </ul>
         </div>
       </div>
 
