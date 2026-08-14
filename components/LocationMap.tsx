@@ -1,9 +1,3 @@
-"use client";
-
-import Image from "next/image";
-
-import { useRevealOnce } from "@/hooks/useRevealOnce";
-
 interface OfficeHour {
   label: string;
   value: string;
@@ -29,8 +23,6 @@ export default function LocationMap({
   hours = DEFAULT_HOURS,
 }: LocationMapProps) {
   const mapQuery = encodeURIComponent(address);
-  const { ref: photoRef, isVisible: photoVisible } =
-    useRevealOnce<HTMLDivElement>();
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
@@ -47,33 +39,14 @@ export default function LocationMap({
       </div>
 
       <div className="mt-12 grid gap-8 lg:grid-cols-5">
-        <div className="flex flex-col gap-6 lg:col-span-3">
-          <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-            <div className="aspect-video w-full">
-              <iframe
-                title="UI Dentist clinic location"
-                src={`https://maps.google.com/maps?q=${mapQuery}&output=embed`}
-                className="h-full w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
-
-          <div
-            ref={photoRef}
-            className={`aspect-video w-full overflow-hidden rounded-2xl motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
-              photoVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-3"
-            }`}
-          >
-            <Image
-              src="/images/contact-reception.webp"
-              alt="UI Dentist reception area"
-              width={1600}
-              height={900}
-              className="h-full w-full object-cover"
+        <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm lg:col-span-3">
+          <div className="aspect-video w-full">
+            <iframe
+              title="UI Dentist clinic location"
+              src={`https://maps.google.com/maps?q=${mapQuery}&output=embed`}
+              className="h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </div>
