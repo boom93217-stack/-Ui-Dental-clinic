@@ -47,12 +47,29 @@ TEAM: TeamMember[] = [
 
 export default function AboutUs() {
   const lead = TEAM[0];
+  const { ref: bannerRef, isVisible: bannerVisible } =
+    useRevealOnce<HTMLDivElement>();
   const { ref: portraitRef, isVisible: portraitVisible } =
     useRevealOnce<HTMLDivElement>();
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-      <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div
+        ref={bannerRef}
+        className={`aspect-[21/9] w-full overflow-hidden rounded-2xl motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
+          bannerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+        }`}
+      >
+        <Image
+          src="/images/about-banner.webp"
+          alt="Inside the UI Dentist clinic"
+          width={2000}
+          height={857}
+          className="h-full w-full object-cover"
+        />
+      </div>
+
+      <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
             About Us

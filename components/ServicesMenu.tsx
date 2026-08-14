@@ -87,7 +87,7 @@ export default function ServicesMenu() {
 
   return (
     <section className="bg-slate-50 py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
         <div
           ref={bannerRef}
           className={`aspect-[21/9] w-full overflow-hidden rounded-2xl motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${

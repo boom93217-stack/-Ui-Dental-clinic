@@ -33,8 +33,12 @@ export default function Hero({
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (!reduceMotion) {
-      videoRef.current?.play().catch(() => {});
+    if (!reduceMotion && videoRef.current) {
+      // Autoplay is only granted by browsers when the element is actually
+      // muted at the DOM property level — the JSX `muted` attribute alone
+      // isn't always enough before the element has been played once.
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
     }
   }, []);
 
