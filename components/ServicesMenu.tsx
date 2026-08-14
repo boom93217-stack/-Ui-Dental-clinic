@@ -86,7 +86,7 @@ export default function ServicesMenu() {
     useRevealOnce<HTMLDivElement>();
 
   return (
-    <section className="bg-slate-50 py-16 sm:py-20">
+    <section className="bg-slate-50 pt-6 pb-16 sm:pt-8 sm:pb-20">
       <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
         <div
           ref={bannerRef}

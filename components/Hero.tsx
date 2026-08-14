@@ -20,8 +20,11 @@ export default function Hero({
   const videoRef = useRef<HTMLVideoElement>(null);
   const words = overlayTitle.split(" ");
 
-  // Pick the right-sized encode for the viewport, and skip autoplay entirely
-  // for prefers-reduced-motion users (they get the static poster frame).
+  // Pick the right-sized encode for the viewport. Autoplay always runs, even
+  // under prefers-reduced-motion — this video is muted decorative background
+  // footage, not a distracting animation, and gating it behind that media
+  // query left desktops with "reduce motion" enabled (a common Windows
+  // setting) stuck on the static poster frame while phones played fine.
   // Done imperatively on the persistent <video> node — swapping `src` via a
   // remounted element loses the play() call, since it fires on the node
   // that's about to be replaced rather than the freshly mounted one.
@@ -34,17 +37,12 @@ export default function Hero({
         ? "/videos/hero/hero-mobile.mp4"
         : "/videos/hero/hero-desktop.mp4";
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (!reduceMotion) {
-      // Autoplay is only granted by browsers when the element is actually
-      // muted at the DOM property level — the JSX `muted` attribute alone
-      // isn't always enough before the element has been played once.
-      el.muted = true;
-      el.load();
-      el.play().catch(() => {});
-    }
+    // Autoplay is only granted by browsers when the element is actually
+    // muted at the DOM property level — the JSX `muted` attribute alone
+    // isn't always enough before the element has been played once.
+    el.muted = true;
+    el.load();
+    el.play().catch(() => {});
   }, []);
 
   const fadeUp =

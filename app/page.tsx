@@ -54,7 +54,7 @@ export default function Home() {
         <div id="results" className="relative scroll-mt-20">
           <ResultsGalleryVideoScroll
             videoFramePath="/videos/video_1_frames"
-            totalFrames={20}
+            totalFrames={13}
             overlayTitle="Real Smiles, Real Results"
             overlayDescription="See real before and after transformations."
           />
