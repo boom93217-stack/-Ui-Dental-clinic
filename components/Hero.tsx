@@ -1,24 +1,42 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 import { useRevealOnce } from "@/hooks/useRevealOnce";
 
 interface HeroProps {
-  /** Path (under /public) to the hero image. */
-  imageSrc: string;
   overlayTitle?: string;
   overlayDescription?: string;
 }
 
+const MOBILE_BREAKPOINT = 768;
+
 export default function Hero({
-  imageSrc,
   overlayTitle = "Confidence Starts With Your Smile",
   overlayDescription = "Your journey to perfect smiles starts here.",
 }: HeroProps) {
   const { ref, isVisible } = useRevealOnce<HTMLDivElement>();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoSrc, setVideoSrc] = useState("/videos/hero/hero-desktop.mp4");
   const words = overlayTitle.split(" ");
+
+  // Pick the right-sized encode for the viewport, and skip autoplay entirely
+  // for prefers-reduced-motion users (they get the static poster frame).
+  useEffect(() => {
+    setVideoSrc(
+      window.innerWidth < MOBILE_BREAKPOINT
+        ? "/videos/hero/hero-mobile.mp4"
+        : "/videos/hero/hero-desktop.mp4"
+    );
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (!reduceMotion) {
+      videoRef.current?.play().catch(() => {});
+    }
+  }, []);
 
   const fadeUp =
     "motion-safe:transition motion-safe:duration-700 motion-safe:ease-out";
@@ -28,13 +46,17 @@ export default function Hero({
 
   return (
     <div className="relative h-[calc(100vh-4rem)] w-full overflow-hidden bg-clinic-ink md:aspect-video md:h-auto">
-      <Image
-        src={imageSrc}
-        alt="Confident, healthy smile at UI Dentist"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover motion-safe:animate-hero-zoom"
+      <video
+        ref={videoRef}
+        key={videoSrc}
+        className="absolute inset-0 h-full w-full object-cover"
+        src={videoSrc}
+        poster="/videos/hero/hero-poster.webp"
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
       />
 
       {/* Dark bottom-to-top gradient for headline/CTA contrast */}

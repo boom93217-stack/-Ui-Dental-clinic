@@ -38,7 +38,6 @@ export default function Home() {
       <main>
         <div id="hero" className="relative scroll-mt-20">
           <Hero
-            imageSrc="/images/home-final-cta.webp"
             overlayTitle="Confidence Starts With Your Smile"
             overlayDescription="Your journey to perfect smiles starts here."
           />
