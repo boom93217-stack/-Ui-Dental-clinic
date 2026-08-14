@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 import { useRevealOnce } from "@/hooks/useRevealOnce";
 
@@ -18,27 +18,32 @@ export default function Hero({
 }: HeroProps) {
   const { ref, isVisible } = useRevealOnce<HTMLDivElement>();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoSrc, setVideoSrc] = useState("/videos/hero/hero-desktop.mp4");
   const words = overlayTitle.split(" ");
 
   // Pick the right-sized encode for the viewport, and skip autoplay entirely
   // for prefers-reduced-motion users (they get the static poster frame).
+  // Done imperatively on the persistent <video> node — swapping `src` via a
+  // remounted element loses the play() call, since it fires on the node
+  // that's about to be replaced rather than the freshly mounted one.
   useEffect(() => {
-    setVideoSrc(
+    const el = videoRef.current;
+    if (!el) return;
+
+    el.src =
       window.innerWidth < MOBILE_BREAKPOINT
         ? "/videos/hero/hero-mobile.mp4"
-        : "/videos/hero/hero-desktop.mp4"
-    );
+        : "/videos/hero/hero-desktop.mp4";
 
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (!reduceMotion && videoRef.current) {
+    if (!reduceMotion) {
       // Autoplay is only granted by browsers when the element is actually
       // muted at the DOM property level — the JSX `muted` attribute alone
       // isn't always enough before the element has been played once.
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
+      el.muted = true;
+      el.load();
+      el.play().catch(() => {});
     }
   }, []);
 
@@ -52,9 +57,8 @@ export default function Hero({
     <div className="relative h-[calc(100vh-4rem)] w-full overflow-hidden bg-clinic-ink md:aspect-video md:h-auto">
       <video
         ref={videoRef}
-        key={videoSrc}
         className="absolute inset-0 h-full w-full object-cover"
-        src={videoSrc}
+        src="/videos/hero/hero-desktop.mp4"
         poster="/videos/hero/hero-poster.webp"
         muted
         loop

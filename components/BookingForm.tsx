@@ -84,7 +84,7 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
 
   return (
     <section className="bg-sky-50 py-16 sm:py-20">
-      <div className="mx-auto grid w-full max-w-5xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-14 lg:px-8">
+      <div className="mx-auto grid w-full max-w-5xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
         <div className="overflow-hidden rounded-2xl">
           <Image
             src="/images/home-final-cta.webp"
