@@ -34,7 +34,7 @@ export default function LocationMap({
           Find Our Clinic
         </h2>
         <p className="mt-3 text-slate-600">
-          Conveniently located with easy parking — come see the space for yourself.
+          Conveniently located with easy parking.
         </p>
       </div>
 

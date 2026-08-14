@@ -44,20 +44,26 @@ export default function VideoOverlay({
       {/* Text overlay */}
       <div
         ref={ref}
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-1 px-4 pb-6 text-center sm:gap-2 sm:px-6 sm:pb-8 md:pb-10"
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-1 px-4 pb-10 text-center sm:gap-2 sm:px-6 sm:pb-14 md:pb-16"
       >
         <Heading className="text-xl font-semibold leading-tight tracking-tight text-clinic-ink sm:text-2xl md:text-4xl lg:text-5xl">
           {wordReveal ? (
-            words.map((word, i) => (
-              <span
-                key={i}
-                className={`inline-block ${revealBase} ${revealState}`}
-                style={{ transitionDelay: isVisible ? `${i * 70}ms` : "0ms" }}
-              >
-                {word}
-                {i < words.length - 1 ? " " : ""}
-              </span>
-            ))
+            words.flatMap((word, i) => {
+              const span = (
+                <span
+                  key={`w-${i}`}
+                  className={`inline-block ${revealBase} ${revealState}`}
+                  style={{ transitionDelay: isVisible ? `${i * 70}ms` : "0ms" }}
+                >
+                  {word}
+                </span>
+              );
+              // The separating space is a plain sibling text node, not trailing
+              // content inside the inline-block span — browsers collapse
+              // whitespace at the end of an inline-block's own line box, which
+              // was silently eating the space between words.
+              return i < words.length - 1 ? [span, " "] : [span];
+            })
           ) : (
             <span className={`inline-block ${revealBase} ${revealState}`}>
               {text}

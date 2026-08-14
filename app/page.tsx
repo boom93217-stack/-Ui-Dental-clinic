@@ -2,16 +2,13 @@ import dynamic from "next/dynamic";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import HeroVideoScroll from "@/components/HeroVideoScroll";
+import Hero from "@/components/Hero";
 import SectionSkeleton from "@/components/SectionSkeleton";
 
 const ResultsGalleryVideoScroll = dynamic(
   () => import("@/components/ResultsGalleryVideoScroll"),
   { loading: () => <SectionSkeleton /> }
 );
-const VideoSection3 = dynamic(() => import("@/components/VideoSection3"), {
-  loading: () => <SectionSkeleton />,
-});
 const LocationMap = dynamic(() => import("@/components/LocationMap"), {
   loading: () => <SectionSkeleton />,
 });
@@ -31,39 +28,36 @@ export default function Home() {
       <Navigation
         sections={[
           "hero",
-          "results",
-          "clinic",
-          "location",
-          "booking",
           "about",
           "services",
+          "results",
+          "location",
+          "booking",
         ]}
       />
       <main>
         <div id="hero" className="relative scroll-mt-20">
-          <HeroVideoScroll
-            videoFramePath="/videos/video_2_frames"
-            totalFrames={20}
+          <Hero
+            imageSrc="/hero.webp"
             overlayTitle="Confidence Starts With Your Smile"
             overlayDescription="Your journey to perfect smiles starts here."
           />
+        </div>
+
+        <div id="about" className="scroll-mt-20">
+          <AboutUs />
+        </div>
+
+        <div id="services" className="scroll-mt-20">
+          <ServicesMenu />
         </div>
 
         <div id="results" className="relative scroll-mt-20">
           <ResultsGalleryVideoScroll
             videoFramePath="/videos/video_1_frames"
             totalFrames={20}
-            overlayTitle="Real Patients, Real Transformations"
-            overlayDescription="Explore before-and-after results from patients who trusted us with their smiles."
-          />
-        </div>
-
-        <div id="clinic" className="relative scroll-mt-20">
-          <VideoSection3
-            videoFramePath="/videos/video_3_frames"
-            totalFrames={20}
-            overlayTitle="A Clinic Designed Around Your Comfort"
-            overlayDescription="Every space designed for your peace of mind."
+            overlayTitle="Real Smiles, Real Results"
+            overlayDescription="See real before and after transformations."
           />
         </div>
 
@@ -73,14 +67,6 @@ export default function Home() {
 
         <div id="booking" className="scroll-mt-20">
           <BookingSection />
-        </div>
-
-        <div id="about" className="scroll-mt-20">
-          <AboutUs />
-        </div>
-
-        <div id="services" className="scroll-mt-20">
-          <ServicesMenu />
         </div>
       </main>
       <Footer />

@@ -8,14 +8,12 @@ interface NavigationProps {
   sections?: string[];
 }
 
-const DEFAULT_SECTIONS = ["home", "videos", "gallery", "about", "services", "booking"];
+const DEFAULT_SECTIONS = ["home", "about", "services", "gallery", "location", "booking"];
 
 /** Known id -> display label. Covers both the spec's example ids and this site's real section ids. */
 const LABELS: Record<string, string> = {
   home: "Home",
   hero: "Home",
-  videos: "Videos",
-  clinic: "Videos",
   gallery: "Gallery",
   results: "Gallery",
   location: "Location",

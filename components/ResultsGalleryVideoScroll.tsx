@@ -4,7 +4,7 @@ import { frameSrc, useFrameScrub } from "@/hooks/useFrameScrub";
 import VideoOverlay from "@/components/VideoOverlay";
 
 interface ResultsGalleryVideoScrollProps {
-  /** Base path (under /public) to the extracted WebP frame sequence, e.g. "/videos/video_2_frames" */
+  /** Base path (under /public) to the extracted WebP frame sequence, e.g. "/videos/video_1_frames" */
   videoFramePath: string;
   /** Total number of frames in the sequence (frame_0001.webp .. frame_{totalFrames}.webp) */
   totalFrames: number;
@@ -17,8 +17,8 @@ interface ResultsGalleryVideoScrollProps {
 export default function ResultsGalleryVideoScroll({
   videoFramePath,
   totalFrames,
-  overlayTitle = "Real Patients, Real Transformations",
-  overlayDescription = "Explore before-and-after results from patients who trusted us with their smiles.",
+  overlayTitle = "Real Smiles, Real Results",
+  overlayDescription = "See real before and after transformations.",
   scrollHeightMultiplier = 2,
 }: ResultsGalleryVideoScrollProps) {
   const { wrapperRef, currentFrame, isInView, firstFrameLoaded } =

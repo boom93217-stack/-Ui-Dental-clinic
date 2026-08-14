@@ -31,16 +31,21 @@ export default function RevealText({
     : "opacity-0 translate-y-3";
 
   const content = wordReveal ? (
-    words.map((word, i) => (
-      <span
-        key={i}
-        className={`inline-block ${revealBase} ${revealState}`}
-        style={{ transitionDelay: isVisible ? `${i * 70}ms` : "0ms" }}
-      >
-        {word}
-        {i < words.length - 1 ? " " : ""}
-      </span>
-    ))
+    words.flatMap((word, i) => {
+      const span = (
+        <span
+          key={`w-${i}`}
+          className={`inline-block ${revealBase} ${revealState}`}
+          style={{ transitionDelay: isVisible ? `${i * 70}ms` : "0ms" }}
+        >
+          {word}
+        </span>
+      );
+      // Plain sibling text node, not trailing content inside the inline-block
+      // span — trailing whitespace inside an inline-block gets collapsed away
+      // by the browser, which was eating the space between words.
+      return i < words.length - 1 ? [span, " "] : [span];
+    })
   ) : (
     <span className={`inline-block ${revealBase} ${revealState}`}>{text}</span>
   );
