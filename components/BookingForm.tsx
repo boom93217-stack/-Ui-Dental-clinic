@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -83,26 +84,37 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
 
   return (
     <section className="bg-sky-50 py-16 sm:py-20">
-      <div className="mx-auto w-full max-w-[600px] px-4 sm:px-6">
-        <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
-            Book an Appointment
-          </p>
-          <RevealText
-            text="Your New Smile Awaits"
-            wordReveal
-            className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl"
+      <div className="mx-auto grid w-full max-w-5xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-14 lg:px-8">
+        <div className="overflow-hidden rounded-2xl">
+          <Image
+            src="/images/home-final-cta.webp"
+            alt="UI Dentist patient care"
+            width={1600}
+            height={1200}
+            className="h-64 w-full object-cover sm:h-80 lg:h-full"
           />
-          <p className="mt-3 text-slate-600">
-            Tell us a little about yourself and pick a time that works for you.
-          </p>
         </div>
 
-        <form
-          noValidate
-          onSubmit={handleSubmit(submitHandler)}
-          className="mt-10 space-y-5 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8"
-        >
+        <div className="w-full">
+          <div className="text-center lg:text-left">
+            <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
+              Book an Appointment
+            </p>
+            <RevealText
+              text="Your New Smile Awaits"
+              wordReveal
+              className="mt-2 text-3xl font-semibold tracking-tight text-clinic-ink sm:text-4xl"
+            />
+            <p className="mt-3 text-slate-600">
+              Tell us a little about yourself and pick a time that works for you.
+            </p>
+          </div>
+
+          <form
+            noValidate
+            onSubmit={handleSubmit(submitHandler)}
+            className="mt-10 space-y-5 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8"
+          >
           <div>
             <label
               htmlFor="name"
@@ -307,7 +319,8 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
               {statusMessage}
             </p>
           )}
-        </form>
+          </form>
+        </div>
       </div>
     </section>
   );

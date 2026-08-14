@@ -1,3 +1,9 @@
+"use client";
+
+import Image from "next/image";
+
+import { useRevealOnce } from "@/hooks/useRevealOnce";
+
 interface Service {
   title: string;
   description: string;
@@ -76,10 +82,30 @@ function ServiceIcon({ path }: { path: string }) {
 }
 
 export default function ServicesMenu() {
+  const { ref: bannerRef, isVisible: bannerVisible } =
+    useRevealOnce<HTMLDivElement>();
+
   return (
     <section className="bg-slate-50 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <div
+          ref={bannerRef}
+          className={`aspect-[21/9] w-full overflow-hidden rounded-2xl motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
+            bannerVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-3"
+          }`}
+        >
+          <Image
+            src="/images/services-treatment.webp"
+            alt="Dental treatment room at UI Dentist"
+            width={2000}
+            height={857}
+            className="h-full w-full object-cover"
+          />
+        </div>
+
+        <div className="mx-auto mt-10 max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
             Treatments
           </p>

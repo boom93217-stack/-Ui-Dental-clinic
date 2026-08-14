@@ -137,36 +137,46 @@ export default function Navigation({ sections = DEFAULT_SECTIONS }: NavigationPr
           </Link>
         </nav>
 
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-clinic-ink lg:hidden"
-          aria-expanded={isOpen}
-          aria-label="Toggle navigation menu"
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-            aria-hidden="true"
+        <div className="flex items-center gap-2 lg:hidden">
+          {/* Always reachable on mobile, even with the menu closed. */}
+          <Link
+            href={`#${ctaId}`}
+            className="flex min-h-[44px] items-center rounded-full bg-cyan-500 px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-cyan-600"
           >
-            {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
-              />
-            )}
-          </svg>
-        </button>
+            Book
+          </Link>
+
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md text-clinic-ink"
+            aria-expanded={isOpen}
+            aria-label="Toggle navigation menu"
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden="true"
+            >
+              {isOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {isOpen && (
@@ -176,7 +186,7 @@ export default function Navigation({ sections = DEFAULT_SECTIONS }: NavigationPr
               key={id}
               href={`#${id}`}
               onClick={() => setIsOpen(false)}
-              className={`rounded-md px-3 py-2 text-sm font-medium hover:bg-slate-50 hover:text-cyan-600 ${
+              className={`flex min-h-[44px] items-center rounded-md px-3 text-sm font-medium hover:bg-slate-50 hover:text-cyan-600 ${
                 activeSection === id ? "text-cyan-600" : "text-slate-700"
               }`}
             >
@@ -186,7 +196,7 @@ export default function Navigation({ sections = DEFAULT_SECTIONS }: NavigationPr
           <Link
             href={`#${ctaId}`}
             onClick={() => setIsOpen(false)}
-            className="mt-2 rounded-full bg-cyan-500 px-5 py-2 text-center text-sm font-semibold text-white hover:bg-cyan-600"
+            className="mt-2 flex min-h-[44px] items-center justify-center rounded-full bg-cyan-500 px-5 text-center text-sm font-semibold text-white hover:bg-cyan-600"
           >
             {labelFor(ctaId)}
           </Link>
